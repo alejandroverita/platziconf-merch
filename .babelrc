@@ -1,0 +1,6 @@
+{
+    "presets":[
+        "@babel/preset-env", //compila ES6 ES10
+        "@babel/preset-react" //compila sintaxis jsx
+    ]
+}
