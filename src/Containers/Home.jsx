@@ -1,8 +1,13 @@
 import React from 'react';
 
+/* Components */
+import Products from '../Components/Products';
+
+import initialState from '../initialState';
+
 const Home = () => {
     return (
-        <h1>Home</h1>
+        <Products products={initialState.products} />
     );
 }
 
