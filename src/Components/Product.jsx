@@ -5,6 +5,7 @@ const Product = ({
     product: {
       image, title, price, description,
     },
+    handleAddToCart
   }) => {
     return (
         <>
@@ -19,7 +20,9 @@ const Product = ({
                     </h2>
                     <p>{description}</p>
                 </div>
-                <button type="button" >Comprar</button>
+                <button type="button" 
+                    onClick={handleAddToCart(title)}
+                >Comprar</button>
             </div> 
         </>
     );
