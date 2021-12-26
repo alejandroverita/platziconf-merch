@@ -9,6 +9,10 @@ const Information = () => {
   const navigate = useNavigate();
   const {cart} = state;
 
+  const handleSumTotal = () => {
+      return cart.reduce((acc, cur) => acc + cur.price, 0)
+  };
+
   const handleSubmit = () => {
     const formData = new FormData(form.current);
     const buyer = {
@@ -99,6 +103,11 @@ const Information = () => {
             </div>
           </div>
         ))}
+        <br/>
+            <div className = 'Information-element'>
+              <h4>Total: </h4>
+              <span>${handleSumTotal()}</span>
+            </div>
 
       </div>
     </div>

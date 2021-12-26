@@ -6,19 +6,13 @@ import initialState from '../initialState';
 const useInitialState = () => {
 
     const [state, setState] = useState(initialState);
-    const [counter, setCounter] = useState(0);
-
-    const addCounter = () => {
-        setCounter(counter + 1)
-        return counter
-    }
 
     const addToCart = payload => {
         setState({
-            ...state,
-            cart: [...state.cart, payload],
-        })
-    };
+        ...state,
+        cart: [...state.cart, payload],
+        });
+    }
 
     const removeFromCart = payload => {
         setState({
@@ -34,13 +28,21 @@ const useInitialState = () => {
         })
     }
 
+    const addNewOrder = payload => {
+        setState({
+            ...state,
+            orders: [...state.orders, payload]
+        })
+    }
+
     return {
         addToCart,
         removeFromCart,
         addToBuyer,
+        addNewOrder,
         state,
     };
     
-}
+};
 
 export default useInitialState;
