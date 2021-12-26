@@ -7,7 +7,7 @@ import Products from '../Components/Products';
 
 const Home = () => {
     return (
-        <Products  />
+        <Products />
     );
 }
 

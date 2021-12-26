@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 
 import initialState from '../initialState';
@@ -6,6 +6,12 @@ import initialState from '../initialState';
 const useInitialState = () => {
 
     const [state, setState] = useState(initialState);
+    const [counter, setCounter] = useState(0);
+
+    const addCounter = () => {
+        setCounter(counter + 1)
+        return counter
+    }
 
     const addToCart = payload => {
         setState({
@@ -15,17 +21,23 @@ const useInitialState = () => {
     };
 
     const removeFromCart = payload => {
-        console.log(payload)
+        setState({
+          ...state,
+          cart: state.cart.filter(items => items.id !== payload.id),
+        });
+    };
+
+    const addToBuyer = payload => {
         setState({
             ...state,
-            cart:[state.cart.filter(item => item.id !== payload.id)],
+            buyer: [...state.buyer, payload],
         })
-        console.log(item.id)
     }
 
     return {
         addToCart,
         removeFromCart,
+        addToBuyer,
         state,
     };
     

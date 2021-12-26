@@ -1,30 +1,50 @@
-import React from 'react';
-
-import {Link} from 'react-router-dom';
-
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import AppContext from '../Context/AppContext';
 import '../Styles/Components/Checkout.css';
 
+import CheckoutItem from '../Components/CheckoutItem';
+
 const Checkout = () => {
+
+    const {state, removeFromCart} = useContext(AppContext);
+
+    const { cart } = state;
+
+    const handleRemove = (product) => () =>{
+        removeFromCart(product);
+        // console.log(cart[index])
+            
+    };
+
+    const handleSumTotal = () => {
+        return cart.reduce((acc, cur) => acc + cur.price, 0)
+    };
+    
+    
     return (
         <div className="Checkout">
             <div className="Checkout-content">
-                <h3>Lista de Pedidos</h3>
-                <div className="Checkout-item">
-                    <div className="Checkout-element">
-                        <h4>Item name</h4>
-                        <span>$10</span>
-                    </div>
-                    <button type='button'>
-                        <i className="fas fa-trash-alt" />
-                    </button>
+                <h3>{cart.length > 0 ? "Orders list" : "No orders"}</h3>
+
+                {cart.map((item)=>(
+
+                    <CheckoutItem 
+                        
+                        product={item} 
+                        handleRemove={handleRemove(item)}
+                    />
+                ))}
+            </div>
+            
+            {cart.length > 0 && (
+                <div className="Checkout-sidebar">
+                    <h3>Precio Total: ${handleSumTotal()}</h3>
+                    <Link to='/checkout/information'>
+                        <button type='button'>Continuar</button>
+                    </Link>
                 </div>
-            </div>
-            <div className="Checkout-sidebar">
-                <h3>Precio Total: $10</h3>
-                <Link to='/checkout/information'>
-                <button type='button'>Continuar pedido</button>
-                </Link>
-            </div>
+            )}
         </div>
     );
 }

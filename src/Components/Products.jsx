@@ -10,7 +10,7 @@ const Products = () => {
 
     const {products} = state;
 
-    const handleAddToCart = product => {
+    const handleAddToCart = product => () => {
         addToCart(product)
       }
     
@@ -18,9 +18,10 @@ const Products = () => {
         <div className="Products">
             <div className="Products-items">
                 {products.map(product =>(
-                    <Product key={product.id} 
+                    <Product 
+                    key={product.id} 
                     product={product} 
-                    handleAddToCart={()=>handleAddToCart}
+                    handleAddToCart={handleAddToCart}
                     />
                 ))}
             </div>
