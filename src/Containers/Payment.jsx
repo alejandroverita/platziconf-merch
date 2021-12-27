@@ -19,8 +19,10 @@ const Payment = ({history}) => {
                 product: cart, 
                 payment: data,
             }
-            addNewOrder(newOrder);
-            history.push('/checkout/success')
+            addNewOrder(
+                newOrder,
+                history.push('/checkout/success'),
+              );
         }
     }
 
