@@ -11,6 +11,18 @@ const Payment = ({history}) => {
         return cart.reduce((acc, cur) => acc + cur.price, 0)
     };
 
+    
+    const paypalOptions = {
+        clientId: process.env.REACT_APP_CLIENT_ID,
+        intent: 'capture',
+        currency: 'USD,'
+    }
+    
+    const buttonSyles = {
+        layout: 'vertical',
+        shape: 'rect'
+    }
+    
     const handlePaymentSuccess = (data) => {
         console.log(data);
         if(data.status === 'COMPLETED'){
@@ -19,28 +31,15 @@ const Payment = ({history}) => {
                 product: cart, 
                 payment: data,
             }
-            addNewOrder(
-                newOrder,
-                history.push('/checkout/success'),
-              );
+            addNewOrder(newOrder);
+            history.push('/checkout/success')
         }
     }
 
-    const paypalOptions = {
-        clientId: process.env.REACT_APP_CLIENT_ID,
-        intent: 'capture',
-        currency: 'USD,'
-    }
-
-    const buttonSyles = {
-        layout: 'vertical',
-        shape: 'rect'
-    }
-    
     return (
         <div className="Payment">
             <div className="Payment-content">
-                <h3>Resument del pedido:</h3>
+                <h3>Resumen del pedido:</h3>
                 {cart.map((item)=> ( 
                     <div className="Payment-item" key={item.title}>
                         <div className="Payment-element">
