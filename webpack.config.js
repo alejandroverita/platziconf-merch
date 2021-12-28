@@ -49,7 +49,18 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'assets/[name].[hash].css',
     }),
-    new DotenvWebpackPlugin(),
+    new DotenvWebpackPlugin({
+      path: './.env',
+			safe: true,
+			systemvars: true,
+			defaults: false,
+    }),
+    new webpack.DefinePlugin({
+			'process.env': {
+				REACT_APP_CLIENT_ID: JSON.stringify(process.env.REACT_APP_CLIENT_ID),
+				API_KEY: JSON.stringify(process.env.API_KEY),
+			},
+		}),
   ],
   devServer: {
     static: {
