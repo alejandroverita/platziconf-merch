@@ -34,6 +34,6 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-   	      REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
           API_KEY: ${{ secrets.API_KEY }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+   	      REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
