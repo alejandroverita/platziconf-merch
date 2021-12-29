@@ -1,7 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 const DotenvWebpackPlugin = require('dotenv-webpack');
+const Webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -49,17 +52,22 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'assets/[name].[hash].css',
     }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'public/manifest.json', to: '' },
+        { from: 'public/service-worker.js', to: '' },
+        { from: 'public/icon.png', to: 'assets' },
+      ],
+    }),
     new DotenvWebpackPlugin({
       path: './.env',
 			safe: true,
 			systemvars: true,
 			defaults: false,
     }),
-    new webpack.DefinePlugin({
-			'process.env': {
+    new Webpack.DefinePlugin({
 				REACT_APP_CLIENT_ID: JSON.stringify(process.env.REACT_APP_CLIENT_ID),
 				API_KEY: JSON.stringify(process.env.API_KEY),
-			},
 		}),
   ],
   devServer: {

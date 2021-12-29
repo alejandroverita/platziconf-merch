@@ -6,6 +6,17 @@ import '../Styles/Components/Checkout.css';
 
 import CheckoutItem from '../Components/CheckoutItem';
 
+import Seo from '../SEO/Seo';
+
+const seo = (
+    <Seo
+      title="Checkout"
+      description="Listado de productos"
+      image="https://davecast.s3.amazonaws.com/avatarnegativo.jpg"
+      url="https://mocafood.xyz/"
+    />
+);
+
 const Checkout = () => {
 
     const {state, removeFromCart} = useContext(AppContext);
@@ -25,9 +36,7 @@ const Checkout = () => {
     
     return (
         <>
-            <Helmet>
-                <title>Lista de pedidos - Platzi-Conf Merch</title>
-            </Helmet>
+            {seo}
             <div className="Checkout">
                 <div className="Checkout-content">
                     <h3>{cart.length > 0 ? "Orders list" : "No orders"}</h3>

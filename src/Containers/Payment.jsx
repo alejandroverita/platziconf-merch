@@ -1,9 +1,12 @@
 import React, {useContext} from 'react';
+import {useNavigate} from 'react-router-dom'
 import {PayPalButton} from 'react-paypal-button-v2';
 import AppContext from '../Context/AppContext';
 import '../Styles/Components/Payment.css';
 
-const Payment = ({history}) => {
+const Payment = () => {
+    const navigate = useNavigate();
+    
     const { state, addNewOrder } = useContext(AppContext);
     const { cart, buyer } = state;
 
@@ -31,10 +34,12 @@ const Payment = ({history}) => {
                 product: cart, 
                 payment: data,
             }
-            addNewOrder(newOrder);
-            history.push('/checkout/success')
+            addNewOrder(
+                newOrder
+                );
+            navigate('/checkout/success');
         }
-    }
+    };
 
     return (
         <div className="Payment">
