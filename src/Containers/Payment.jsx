@@ -9,11 +9,6 @@ const Payment = () => {
     
     const { state, addNewOrder } = useContext(AppContext);
     const { cart, buyer } = state;
-
-    const handleSumTotal = () => {
-        return cart.reduce((acc, cur) => acc + cur.price, 0)
-    };
-
     
     const paypalOptions = {
         clientId: process.env.REACT_APP_CLIENT_ID,
@@ -34,11 +29,13 @@ const Payment = () => {
                 product: cart, 
                 payment: data,
             }
-            addNewOrder(
-                newOrder
-                );
+            addNewOrder(newOrder);
             navigate('/checkout/success');
         }
+    };
+
+    const handleSumTotal = () => {
+        return cart.reduce((acc, cur) => acc + cur.price, 0)
     };
 
     return (
