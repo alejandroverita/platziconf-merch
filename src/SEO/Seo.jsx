@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 
 const Seo = ({ title, description, image, url }) => (
   <Helmet>
-    <title>{`MocaFood - ${title}`}</title>
+    <title>{`PlatziConf - ${title}`}</title>
     <meta name="description" content={description} />
     <meta
       name="robots"
@@ -12,10 +12,10 @@ const Seo = ({ title, description, image, url }) => (
     <link rel="canonical" href={url} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content={`MocaFood - ${title}`} />
+    <meta property="og:title" content={`PlatziConf - ${title}`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
-    <meta property="og:site_name" content="MocaFood" />
+    <meta property="og:site_name" content="PlatziConf" />
     <meta property="og:image" content={image} />
     <meta property="og:image:secure_url" content={image} />
     <meta property="og:image:width" content="1280" />
@@ -23,7 +23,7 @@ const Seo = ({ title, description, image, url }) => (
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@davecast_" />
     <meta name="twitter:creator" content="@davecast_" />
-    <meta name="twitter:title" content={`MocaFood ${title}`} />
+    <meta name="twitter:title" content={`PlatziConf ${title}`} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
   </Helmet>
